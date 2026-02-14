@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Glassmorphism</title>
+    <style>
+
+        /* 1. Reset and Body Setup */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            overflow: hidden;
+            background: #f8e9e9; /* Fallback color */
+        }
+
+        /* 2. The Video Layer */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures video fills screen without stretching */
+            filter: blur(10px) brightness(0.6); /* Adjust blur and darkness here */
+            z-index: -1;
+            transform: scale(1.1); /* Prevents white edges from the blur */
+        }
+
+        /* 3. The Centered Text Box */
+        .glass-box {
+            /* No solid colors: 0.1 alpha means 90% transparency */
+            background: rgb(230, 221, 221, 0.15); /* Semi-transparent glass effect */
+            
+            /* This is the secret for the 'hovering' look */
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            
+            padding: 60px;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 30px;
+            
+            /* A very thin white border to define the shape against the video */
+            border: 1px solid rgba(255, 255, 255, 0);
+            
+            /* Large, soft shadow to make it feel like it is floating */
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            
+            color: rgb(156, 69, 69);
+            text-align: center;
+            
+            /* Entry animation */
+            animation: floatUp 1.2s ease-out forwards;
+        }
+
+        @keyframes floatUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-weight: 300;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        p {
+            font-weight: 300;
+            line-height: 1.7;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <video autoplay muted loop playsinline class="video-background">
+        <source src="IMAGES/WhatsApp Video 2026-02-14 at 03.56.48.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+   
+
+</body>
+</html>

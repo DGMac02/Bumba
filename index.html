@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <style>
+        /* 1. Reset and Body Setup */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden; /* Prevents scrolling on the welcome screen */
+        }
+        /* 2. THE FIX: Aggressive Link Reset */
+        /* This ensures the underline NEVER appears and the color stays white */
+        a.main-wrapper, 
+        a.main-wrapper:link, 
+        a.main-wrapper:visited, 
+        a.main-wrapper:hover, 
+        a.main-wrapper:active {
+            text-decoration: none !important; 
+            color: white !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+        /* 2. The Background Image with Fade/Overlay */
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                              url("DGMac02/IMAGES/IMG_4255.jpg");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 3. The Text Box with Animation */
+        .fade-in-box {
+            background: rgba(255, 255, 255, 0.15); /* Semi-transparent glass effect */
+            backdrop-filter: blur(10px);           /* Modern blur effect */
+            padding: 3rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgb(231, 98, 98);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            
+            /* Animation properties */
+            opacity: 0;
+            animation: fadeInTransition 2.5s ease-in forwards;
+        }
+        .fade-in-box:hover {
+            background: rgba(255, 255, 255, 0.18);
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        /* 4. The Keyframe for Fading In */
+        @keyframes fadeInTransition {
+            from {
+                opacity: 0;
+                transform: translateY(20px); /* Subtle slide-up effect */
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    
+
+    <div class="hero-bg">
+        <div class="fade-in-box">
+           <a href="DGMac02/pages1.html" class="main-wrapper">
+            <h1>Enrapture</h1>
+            
+        </a>
+    </div>
+        
+    </div>
+
+    <script>
+        // Browsers usually require a click to play sound. 
+        // This script will try to play it on load, but if it fails, 
+        // it will wait for the user to click anywhere.
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const audio = document.getElementById('startupSound');
+            audio.volume = 0.5; // Set volume to 50%
+
+            const playSound = () => {
+                audio.play().catch(error => {
+                    console.log("Autoplay blocked. Sound will play on first click.");
+                });
+            };
+
+            // Attempt to play on load
+            playSound();
+
+            // Fallback: Play sound on first click if autoplay was blocked
+            document.body.addEventListener('click', () => {
+                playSound();
+            }, { once: true });
+        });
+    </script>
+
+</body>
+</html>
